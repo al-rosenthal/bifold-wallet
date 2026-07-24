@@ -1,9 +1,9 @@
-import { BifoldError, AbstractBifoldLogger } from '@bifold/core'
+import { AbstractBifoldLogger, BifoldError } from '@bifold/core'
 import { LogLevel } from '@credo-ts/core'
 import { DeviceEventEmitter, EmitterSubscription } from 'react-native'
 import { logger } from 'react-native-logs'
 
-import { RemoteLoggerOptions, lokiTransport, consoleTransport } from './transports'
+import { RemoteLoggerOptions, consoleTransport, lokiTransport } from './transports'
 
 export enum RemoteLoggerEventTypes {
   ENABLE_REMOTE_LOGGING = 'RemoteLogging.Enable',
@@ -164,6 +164,7 @@ export class RemoteLogger extends AbstractBifoldLogger {
     this.remoteLoggingAutoDisableTimer = setTimeout(() => {
       this.remoteLoggingEnabled = false
     }, expirationInMinutes * 60000)
+    /// whatever
   }
 
   public report(bifoldError: BifoldError): void {
